@@ -13,7 +13,7 @@ import { TextEditOrDatePicker } from 'components/TextEditOrDatePicker'
 import { errorLevels } from 'globalConstants'
 
 // eslint-disable-next-line
-import { green, redf, purple } from 'logger'
+import { green, redf, purple, grpStart, grpEnd } from 'logger'
 // eslint-disable-next-line
 import { RenderCount } from 'components/RenderCount'
 
@@ -73,6 +73,11 @@ export const CriterionEdit = ({ criterion }) => {
   const [_valueErrorLevel, _setValueErrorLevel] = useState(errorLevelNone)
 
   const { operation, field, value, active } = _criterion
+
+  grpStart('CriterionEDit')
+  green('criterion', criterion)
+  green('_criterion', _criterion)
+  grpEnd()
 
   const dispatch = useDispatch()
 

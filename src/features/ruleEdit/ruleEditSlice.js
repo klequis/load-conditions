@@ -69,6 +69,8 @@ const ruleEditSlice = createSlice({
     ruleEditSetNewRule(state, action) {
       const { payload } = action
       const { origDescription, date } = payload
+      blue('origDescription', origDescription)
+      blue('date', date)
       state.ruleEdit = ruleTmpMake(origDescription, date)
     },
     ruleEditClear(state, action) {

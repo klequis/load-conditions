@@ -7,6 +7,7 @@ import * as R from 'ramda'
 
 // eslint-disable-next-line
 import { yellow } from 'logger'
+import { green } from 'logger'
 
 const getHasRule = (transaction) => {
   return isNilOrEmpty(transaction) ? null : R.prop('hasRule')(transaction)
@@ -27,7 +28,7 @@ export const useRuleEditSet = (transactionId) => {
         // TODO: do nothing for now
       } else {
         const { origDescription, date } = transaction
-        dispatch(ruleEditSetNewRule(origDescription, date))
+        dispatch(ruleEditSetNewRule({origDescription, date}))
       }
     }
   }, [dispatch, transaction])

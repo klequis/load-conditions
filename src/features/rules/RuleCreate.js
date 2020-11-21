@@ -43,7 +43,7 @@ export const RuleCreate = React.memo(() => {
       /> */}
       <div>
         {isTmpRule ? <H2>Create Rule</H2> : <H2>Edit Rule</H2>}
-        {/* <Rule /> */}
+        <Rule />
       </div>
       <div>
         {/* <CriteriaResults /> */}
