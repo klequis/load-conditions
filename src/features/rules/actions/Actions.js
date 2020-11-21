@@ -15,38 +15,14 @@ import { RenderCount } from 'components/RenderCount'
 const Wrapper = styled.div`
   display: flex;
 `
-/*
-display: flex;
-  @media (min-width: 601px) {
-    
-  }
-  @media (max-width: 600px) {
-    flex-direction: column;
-    
-  }
-*/
-// padding-top: 15px;
-// display: flex;
-// width: 100%;
 
 let countTotal = 0
 let countReturn = 0
 
 export const Actions = () => {
-
   countTotal = countTotal + 1
 
   const actions = useSelector((state) => selectRuleEditActions(state))
-
-  const Component = ({ action }) => {
-    if (action.field === tFields.description.name) {
-      return <RenameDescription key={action._id} actionId={action._id} minChars={3} maxWidth={10} />
-    } else if (action.actionType === actionTypes.categorize.name) {
-      return <Categorize key={action._id} action={action} minChars={3} />
-    } else {
-      return <ActionEdit key={action._id} action={action} />
-    }
-  }
 
   if (!actions) {
     return null
@@ -64,12 +40,23 @@ export const Actions = () => {
 
       <Wrapper>
         {actions.map((a) => {
-          return (
-            <Component key={a._id} action={a} />
-          )
+          const { _id, field, actionType } = a
+          if (field === tFields.description.name) {
+            return (
+              <RenameDescription
+                key={_id}
+                actionId={_id}
+                minChars={3}
+                maxWidth={10}
+              />
+            )
+          } else if (actionType === actionTypes.categorize.name) {
+            return <Categorize key={_id} action={a} minChars={3} />
+          } else {
+            return <ActionEdit key={_id} action={a} />
+          }
         })}
       </Wrapper>
     </div>
-
   )
 }

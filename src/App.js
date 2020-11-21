@@ -17,7 +17,7 @@ import { RuleCreate } from 'features/rules'
 
 // eslint-disable-next-line
 import { green, yellow, red } from 'logger'
-
+// eslint-disable-next-line
 import { RenderCount } from 'components/RenderCount'
 
 let countTotal = 0

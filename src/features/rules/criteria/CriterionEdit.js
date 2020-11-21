@@ -45,7 +45,6 @@ const _validateString = (value) => {
     const error = errorLevelError
     error.message = '3 or more characters required'
     return error
-    
   }
   return errorLevelNone
 }
@@ -115,53 +114,55 @@ export const CriterionEdit = ({ criterion }) => {
 
   countReturn = countReturn + 1
   return (
-    <Row>
-      {/* <RenderCount
-          componentName="CriterionEdit"
-          countTotal={{ actual: countTotal, min: 4, max: 4 }}
-          countReturn={{ actual: countReturn, min: 4, max: 4 }}
-        /> */}
-      {/* <CheckDiv id='CheckDiv'> */}
-      <CheckBox name="active" checked={active} onChange={_onChange} />
-      <Select
-        disabled={!active}
-        maxWidth={125}
-        name="field"
-        onBlur={_onBlur}
-        onChange={_onChange}
-        value={field}
-      >
-        {criteriaFieldList.map((f) => (
-          <option key={f.name} value={f.name}>
-            {f.description}
-          </option>
-        ))}
-      </Select>
-      <Select
-        disabled={!active}
-        maxWidth={125}
-        name="operation"
-        onBlur={_onBlur}
-        onChange={_onChange}
-        value={operation}
-      >
-        {operatorList.map((o) => (
-          <option key={o.name} value={o.name}>
-            {o.description}
-          </option>
-        ))}
-      </Select>
-      <TextEditOrDatePicker
-        disabled={!active}
-        field={field}
-        value={value}
-        maxWidth={900}
-        name="value"
-        onChange={_onChange}
-        onBlur={_onBlur}
-        errorLevel={_valueErrorLevel}
+    <>
+      <RenderCount
+        componentName="CriterionEdit"
+        countTotal={{ actual: countTotal, min: 4, max: 4 }}
+        countReturn={{ actual: countReturn, min: 4, max: 4 }}
       />
-    </Row>
+      <Row>
+        {/* <CheckDiv id='CheckDiv'> */}
+        <CheckBox name="active" checked={active} onChange={_onChange} />
+        <Select
+          disabled={!active}
+          maxWidth={125}
+          name="field"
+          onBlur={_onBlur}
+          onChange={_onChange}
+          value={field}
+        >
+          {criteriaFieldList.map((f) => (
+            <option key={f.name} value={f.name}>
+              {f.description}
+            </option>
+          ))}
+        </Select>
+        <Select
+          disabled={!active}
+          maxWidth={125}
+          name="operation"
+          onBlur={_onBlur}
+          onChange={_onChange}
+          value={operation}
+        >
+          {operatorList.map((o) => (
+            <option key={o.name} value={o.name}>
+              {o.description}
+            </option>
+          ))}
+        </Select>
+        <TextEditOrDatePicker
+          disabled={!active}
+          field={field}
+          value={value}
+          maxWidth={900}
+          name="value"
+          onChange={_onChange}
+          onBlur={_onBlur}
+          errorLevel={_valueErrorLevel}
+        />
+      </Row>
+    </>
   )
 }
 

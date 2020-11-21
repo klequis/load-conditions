@@ -1,7 +1,7 @@
 
 import React, {useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ruleEditActionUpdate, selectRuleEditAction } from 'features/ruleEdit'
+import { ruleEditActionUpdate } from 'features/ruleEdit'
 import * as R from 'ramda'
 
 // eslint-disable-next-line
@@ -10,14 +10,15 @@ import { selectRuleEditRenameDescriptionAction } from 'features/ruleEdit'
 
 export const RenameDescription = () => {
 
-  const action = useSelector(selectRuleEditRenameDescriptionAction)
-  const { _id: actionId } = action
+  const [_action, _setAction] = useState(useSelector(selectRuleEditRenameDescriptionAction))
+  const { replaceWithValue, _id: actionId } = _action
 
   const dispatch = useDispatch()
 
   const _onChange = (event) => {
     const { value } = event.target
-    const newAction = R.mergeRight(action, { replaceWithValue: value })
+    const newAction = R.mergeRight(_action, { replaceWithValue: value })
+    _setAction(newAction)
     dispatch(ruleEditActionUpdate(newAction))
   }
 
@@ -25,7 +26,7 @@ export const RenameDescription = () => {
     <input
       key={actionId}
       type="text"
-      value={action.replaceWithValue}
+      value={replaceWithValue}
       name="replaceWithValue"
       onChange={_onChange}
       // onBlur={_onBlur}
